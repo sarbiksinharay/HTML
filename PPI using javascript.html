@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>sarbik</title>
+    <style>
+
+    </style>
+    <script>
+        function cal(){
+            var a=parseInt(document.getElementById("width").value)
+            var b=parseInt(document.getElementById("height").value)
+            var c=parseFloat(document.getElementById("size").value)
+            var ppi=(Math.sqrt( Math.pow(a,2)+Math.pow(b,2)))/c
+            document.getElementById("show").innerHTML=Math.round(ppi)+ " PPI"
+
+        }
+    </script>
+</head>
+<body>
+<header>
+    <center>
+        <img src="assets/5eeea355389655.59822ff824b72.gif"  style="width: 300px">
+    </center>
+    <P></P>
+
+</header>
+<main>
+    <center>
+    <span>
+        <form>
+            <input  id="width" type="text" placeholder="Enter Width">
+            <input id="height" type="text" placeholder="Enter Height">
+             <input id="size" type="text" placeholder="Screen size">
+        </form>
+        <br>
+        <button type="button" onclick="cal()">Calculate</button>
+    </span>
+        <br>
+        <p id="show"></p>
+    </center>
+</main>
+</body>
+</html>
