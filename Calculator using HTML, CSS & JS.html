@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <title>Calculator</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sixtyfour&display=swap" rel="stylesheet">
+    <script src="calculator.js"></script>
+
+    <style>
+        body {
+            background-image: url("/assets/cal.jpg");
+        }
+
+        .hd, .en {
+            font-family: "Sixtyfour", sans-serif;
+            font-optical-sizing: auto;
+            font-weight: 400;
+            font-style: normal;
+            font-variation-settings:
+                    "BLED" 0,
+                    "SCAN" 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        #input {
+            background-color: ghostwhite;
+        }
+
+        /* Define hover effect for buttons */
+        .o1:hover, .t2:hover, .t3:hover, .min:hover, .plus:hover, .cal:hover, .dot:hover, .zero:hover, .mul:hover,
+        .six:hover, .five:hover, .four:hover, .div:hover, .nine:hover, .eight:hover, .sev:hover, .par1:hover, .par2:hover, .mod:hover, .AC:hover {
+            background-color: coral;
+            cursor: pointer;
+            color: white;
+            font-size: 24px; /* Increase font size on hover */
+            transition: all 0.5s ease;
+        }
+    </style>
+    <script>
+        function fun(num) {
+            var val = document.getElementById("output").value;
+            if (num >= 0 && num <= 9 || num == '(' || num == ')') {
+                document.getElementById("output").value = val + num;
+            } else if (num == '+' || num == '-' || num == '*' || num == '/' || num == '%') {
+                sessionStorage.setItem("val1", val);
+                //sessionStorage.setItem("operator", num);
+                document.getElementById("output").value = val + num;
+            } else if (num == '=') {
+                let val1 = sessionStorage.getItem("val1");
+                // let operator = sessionStorage.getItem("operator");
+                let val2 = document.getElementById("output").value;
+                let result=eval(val)
+
+
+                // switch (operator) {
+                //     case '+':
+                //         result = parseInt(val1) + parseInt(val2);
+                //         break;
+                //     case '-':
+                //         result = parseInt(val1) - parseInt(val2);
+                //         break;
+                //     case '*':
+                //         result = parseInt(val1) * parseInt(val2);
+                //         break;
+                //     case '/':
+                //         result = parseInt(val1) / parseInt(val2);
+                //         break;
+                //     case '%':
+                //         result = parseInt(val1) % parseInt(val2);
+                //         break;
+                // }
+
+                document.getElementById("output").value = result;
+            }else if(num=='AC'){
+                document.getElementById("output").value=null
+                sessionStorage.removeItem("val1")
+                sessionStorage.removeItem("operator")
+
+            }else if(num=='del'){
+                document.getElementById("output").value
+                len=(val.length)-1
+                val=val.slice(0,len)
+                document.getElementById("output").value=val
+            }
+        }
+
+
+    </script>
+
+</head>
+<body>
+<header style="border: black">
+    <p class="hd" align="center" style="font-size: 35px">CALCULATOR</p>
+    <hr style="color: black ;height: 10px;background-color: black;">
+</header>
+<br>
+<center>
+    <main>
+        <div>
+            <table style="height: 500px;width: 500px;border-radius: 30px;background-color: rgba(5, 5, 5,0.5);">
+                <tr>
+                    <td colspan="4" style="border-radius: 30px"><input style="box-sizing: border-box;width:100%;height: 100%;text-align:right ;font-size: x-large;border-radius: 30px" class="en" type="text" placeholder="Enter" id="output"></td>
+                </tr>
+                <tr>
+                    <td style="border-radius: 30px"><input type="button" value="(" onclick="fun('(')" style="height: 100%;width: 100%;text-align: center;font-size: x-large;border-radius: 30px" id="par1" class="par1"></td>
+                    <td style="border-radius: 30px"><input type="button" value="del"  style="height: 100%;width: 100%;text-align: center;font-size: x-large;border-radius: 30px" id="par2" onclick="fun('del')" class="par2"></td>
+                    <td style="border-radius: 30px"><input type="button" value="AC" onclick="fun('AC')" style="height: 100%;width: 100%;text-align: center;font-size: x-large;border-radius: 30px" id="mod" class="mod"></td>
+                    <td style="border-radius: 30px"><input type="button" value="%" onclick="fun('%')" style="height: 100%;width: 100%;text-align: center;font-size: x-large;border-radius: 30px" id="ac" class="AC"></input></td>
+                </tr>
+                <tr>
+                    <td style="border-radius: 30px"><input type="button" onclick="fun(7)" value="7" style="height: 100%;width: 100%;text-align: center;font-size: x-large;border-radius: 30px;" id="seven" class="sev"></input></td>
+                    <td style="border-radius: 30px"><input type="button" onclick="fun(8)" value="8" style="height: 100%;width: 100%;text-align: center;font-size: x-large;border-radius: 30px" id="8" class="eight"></input></td>
+                    <td style="border-radius: 30px"><input type="button" value="9" onclick="fun(9)" style="height: 100%;width: 100%;text-align: center;font-size: x-large;border-radius: 30px" id="9" class="nine"></input></td>
+                    <td style="border-radius: 30px"><input type="button" value="/" onclick="fun('/')" style="height: 100%;width: 100%;text-align: center;font-size: x-large;border-radius: 30px" id="div" class="div"></input></td>
+                </tr>
+                <tr>
+                    <td style="border-radius: 30px"><input type="button" onclick="fun(4)" value="4" style="height: 100%;width: 100%;text-align: center;font-size: x-large;border-radius: 30px" id="4" class="four"></input></td>
+                    <td style="border-radius: 30px"><input type="button" value="5" onclick="fun(5)" style="height: 100%;width: 100%;text-align: center;font-size: x-large;border-radius: 30px" id="5" class="five"></input></td>
+                    <td style="border-radius: 30px"><input type="button" value="6" onclick="fun(6)" style="height: 100%;width: 100%;text-align: center;font-size: x-large;border-radius: 30px" id="6" class="six"></input></td>
+                    <td style="border-radius: 30px"><input type="button" value="*" onclick="fun('*')" style="height: 100%;width: 100%;text-align: center;font-size: x-large;border-radius: 30px" id="mul" class="mul"></input></td>
+
+                </tr>
+                <tr>
+                    <td style="border-radius: 30px"><input type="button" value="1" onclick="fun(1)" style="height: 100%;width: 100%;text-align: center;font-size: x-large;border-radius: 30px" id="1" class="o1"></input></td>
+                    <td style="border-radius: 30px"><input type="button" value="2" onclick="fun(2)" style="height: 100%;width: 100%;text-align: center;font-size: x-large;border-radius: 30px" id="2" class="t2"></input></td>
+                    <td style="border-radius: 30px"><input type="button" value="3" onclick="fun(3)" style="height: 100%;width: 100%;text-align: center;font-size: x-large;border-radius: 30px" id="3" class="t3"></input></td>
+                    <td style="border-radius: 30px;"><input type="button" value="-" onclick="fun('-')" style="height: 100%;width: 100%;text-align: center;font-size: x-large;border-radius: 30px" id="-" class="min"></input></td>
+                </tr>
+                <tr>
+                    <td style="border-radius: 30px"><input type="button" value="0" onclick="fun(0)" style="height: 100%;width: 100%;text-align: center;font-size: x-large;border-radius: 30px" id="0" class="zero"></td>
+                    <td style="border-radius: 30px"><input type="button" value="." style="height: 100%;width: 100%;text-align: center;font-size: x-large;border-radius: 30px" id="dot" class="dot"></input></td>
+                    <td style="border-radius: 30px"><input type="button" value="="  style="height: 100%;width: 100%;text-align: center;;font-size: x-large;border-radius: 30px" onclick="fun('=')" id="cal" class="cal"></input></td>
+                    <td style="border-radius: 30px"><input type="button" value="+" onclick="fun('+')" style="height: 100%;width: 100%;text-align: center;font-size: x-large;border-radius: 30px" id="plus" class="plus"></input></td>
+                </tr>
+
+            </table>
+        </div>
+    </main>
+</center>
+
+
+</body>
+</html>
