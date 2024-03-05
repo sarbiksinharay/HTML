@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BMI calculator</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dosis:wght@200..800&display=swap" rel="stylesheet">
+<script>
+    function fun(x){
+        if(x=== '='){
+            let height=parseFloat(document.getElementById("hei").value)
+            let weight=parseFloat(document.getElementById("wei").value)
+            let cmeter=(height/100)
+            let bmi=parseFloat(weight / (cmeter * cmeter)).toFixed(2)
+
+            if(isNaN(height) || isNaN(weight) || height === 0 || weight === 0) {
+                window.alert("Please enter valid height and weight.");
+            }
+            var image = document.getElementById("displayImage");
+            if (bmi <= 18) {
+                image.src = "assets/underweight1.png";
+                image.alt = "Image 1";
+                document.getElementById("output").innerHTML="BMI:    "+bmi+"    kg/m^2"
+                document.getElementById("output").style.color="#47e4c7"
+            } else if (bmi >18 && bmi < 24) {
+                image.src = "assets/normal.png";
+                image.alt = "Image 2";
+                document.getElementById("output").innerHTML="BMI:    "+bmi+"    kg/m^2"
+                document.getElementById("output").style.color="#1ed91e"
+            } else if (bmi >=25 && bmi<=29 ) {
+                image.src = "assets/overweight.png";
+                image.alt = "Image 3";
+                document.getElementById("output").innerHTML="BMI:    "+bmi+"    kg/m^2"
+                document.getElementById("output").style.color="#ff8001"
+            } else if (bmi>29){
+                image.src = "assets/obes.png"; // Default image if value is between 18 and 25
+                image.alt = "Default Image";
+
+                document.getElementById("output").innerHTML="BMI:    "+bmi+"    kg/m^2"
+                document.getElementById("output").style.color="#ff0101"
+            }
+        }
+        else if(x==='Reset'){
+            document.getElementById("hei").value=null
+            document.getElementById("wei").value=null
+
+        }
+    }
+
+   // function changeImage() {
+        // var value = parseInt(document.getElementById("output").value);
+        // var image = document.getElementById("displayImage");
+        // var value=bmi
+        //
+        // if (value <= 18) {
+        //     image.src = "assets/underweight1.png";
+        //     image.alt = "Image 1";
+        // } else if (value >18 && value < 24) {
+        //     image.src = "assets/normal.png";
+        //     image.alt = "Image 2";
+        // } else if (value >=25 && value<=29 ) {
+        //     image.src = "assets/overweight.png";
+        //     image.alt = "Image 3";
+        // } else if (value>29){
+        //     image.src = "assets/obes.png"; // Default image if value is between 18 and 25
+        //     image.alt = "Default Image";
+        // }
+   // }
+</script>
+    <style>
+        body{
+            background-image: url("assets/bmbk.png");
+            background-size: cover;
+        }
+        .cal:hover{
+            background-color: #00d084;
+            transition: 0.6s ease;
+            cursor:pointer ;
+            color:white ;
+
+        }
+        .res:hover{
+            background-color: red;
+            transition: 0.6s ease;
+            cursor: pointer;
+            color:white ;
+        }
+
+       .cal,.res,#hei,#wei,#head,#output{
+            font-family: "Dosis", sans-serif;
+            font-optical-sizing: auto;
+            font-weight: 800;
+            font-style: normal;
+           font-size: 15px;
+
+        }
+       .div-body{
+           background-color: rgba(20,20,20,0.8);
+           display: inline-block;
+           border-radius: 10px;
+       }
+    </style>
+</head>
+
+<body>
+<center>
+    <header>
+        <h1 STYLE="font-size: xx-large;color: lightskyblue" id="head">BMI CALCULATOR</h1>
+    </header>
+    <hr>
+    <br>
+    <br>
+    <main style="margin-top: 3%">
+        <span class="div-body"><br>
+   <form>
+       <input type="number" id="hei" placeholder="Enter height in CM" style="width: 500px; height: 50px;border-radius: 7px" required>
+       <br><br>
+       <input type="number" id="wei" placeholder="Enter weight in kg" style="width: 500px; height: 50px;border-radius: 7px;gap:10%" required>
+       <br><br>
+       <input type="button" id="bt" onclick="fun('=')" value="Calculate" style="width: 100px; height: 50px;border-radius: 7px ; " class="cal" required>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="Reset" onclick="fun('Reset')" style="width: 100px; height: 50px;border-radius: 7px ; " class="res" >
+   </form>
+        <br><br>
+        <table  style="border-radius: 10px;;">
+            <tr>
+                <td rowspan="2"> <p id="output" style="font-size: x-large;color: white;background-color: rgba(25,25,25,0.5);border-radius: 10px" ></p></td>
+            </tr>
+            <tr>
+                <td><img id="displayImage" src="assets/default_.png" style="width: 250px;height: 150px" alt="Default Image">
+
+                </td>
+            </tr>
+        </table><br>
+  </span>
+    </main>
+</center>
+
+</body>
+</html>
